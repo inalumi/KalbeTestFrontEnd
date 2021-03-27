@@ -1,0 +1,46 @@
+﻿@page
+@model PopUpModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebFormInvoice</title>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/jquery/dist/jquery.js" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-9">
+            <table>
+                <tr>
+                    <td>Purchase Order No</td>
+                    <td>Amount</td>
+                    <td>Action</td>
+                </tr>
+                @foreach(var data in Model.ListOfPurchaseOrder)
+                {
+                    <tr>
+                        <td>@data.PONo</td>
+                        <td>@data.Amount</td>
+                        <td><input value="Pilih" type="button" onclick="post_value('@data.PONo')" /></td>
+                    </tr>
+                }
+            </table>
+            </div>
+        </div>
+</body>
+</html>
+
+    <script type="text/javascript">
+        function post_value(s) {
+            opener.document.getElementById('PoNo').value = s;
+            self.close();
+        }
+    </script>
